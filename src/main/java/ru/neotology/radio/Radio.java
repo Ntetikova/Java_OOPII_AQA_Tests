@@ -1,12 +1,22 @@
 package ru.neotology.radio;
 
 public class Radio {
+
     public int minRadioStation = 0;
-    public int maxRadioStation = 9;
+    public int defaultRadioStation = 10;
+    public int maxRadioStation = defaultRadioStation - 1;
     public int currentRadioStation;
     public int minVolume = 0;
-    public int maxVolume = 10;
+    public int maxVolume = 100;
     public int currentVolume;
+
+
+    public Radio(int defaultRadioStation) {
+        this.maxRadioStation = defaultRadioStation - 1;
+    }
+    public Radio() {
+
+    }
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
@@ -18,12 +28,12 @@ public class Radio {
 
     public void setCurrentRadioStation(int newCurrentRadioStation) {
         if (newCurrentRadioStation > maxRadioStation) {
-            newCurrentRadioStation = minRadioStation ;
+            newCurrentRadioStation = minRadioStation;
         }
         if (newCurrentRadioStation < minRadioStation) {
             newCurrentRadioStation = maxRadioStation;
         }
-        this.currentRadioStation = newCurrentRadioStation;
+        currentRadioStation = newCurrentRadioStation;
     }
 
     public void increaseNextRadioStation(int nextCurrentRadioStation) {
@@ -64,12 +74,12 @@ public class Radio {
         this.currentVolume = increaseCurrentVolume;
     }
 
-    public void decreaseCurrentVolume(int decreasecurrentVolume) {
-        if (decreasecurrentVolume >= maxVolume) {
-            decreasecurrentVolume--;
+    public void decreaseCurrentVolume(int decreaseCurrentVolume) {
+        if (decreaseCurrentVolume >= maxVolume) {
+            decreaseCurrentVolume--;
         } else {
-            decreasecurrentVolume = minVolume;
+            decreaseCurrentVolume = minVolume;
         }
-        currentVolume = decreasecurrentVolume;
+        this.currentVolume = decreaseCurrentVolume;
     }
 }
