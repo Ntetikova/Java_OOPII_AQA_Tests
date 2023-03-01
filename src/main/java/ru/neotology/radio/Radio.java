@@ -1,42 +1,61 @@
 package ru.neotology.radio;
 
 public class Radio {
-    public int minRadioStation = 0;
-    public int maxRadioStation = 9;
-    public int currentRadioStation;
-    public int minVolume = 0;
-    public int maxVolume = 10;
-    public int currentVolume;
+    private int currentRadioStation;
+    private int minRadioStation = 0;
+    private int maxRadioStation = 9;
+    private int currentVolume;
+    private int minVolume = 0;
+    private int maxVolume = 10;
+
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
 
+    public void setCurrentRadioStation(int newRadioStation) {
+        if (newRadioStation < minRadioStation) {
+            newRadioStation = maxRadioStation;
+        }
+        if (newRadioStation > maxRadioStation) {
+            newRadioStation = minRadioStation;
+        }
+        this.currentRadioStation = newRadioStation;
+    }
+    public  void  increaseRadioStation() {
+        int next = currentRadioStation + 1;
+        setCurrentRadioStation(next);
+    }
+    public void decreaseRadioStation() {
+        int pev = currentRadioStation - 1;
+        setCurrentRadioStation(pev);
+    }
     public int getCurrentVolume() {
         return currentVolume;
     }
 
-    public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation > maxRadioStation) {
-            newCurrentRadioStation = minRadioStation ;
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < minVolume) {
+            return;
         }
-        if (newCurrentRadioStation < minRadioStation) {
-            newCurrentRadioStation = maxRadioStation;
+        if (newCurrentVolume > maxVolume) {
+           newCurrentVolume = maxVolume;
         }
-        this.currentRadioStation = newCurrentRadioStation;
+        this.currentVolume = newCurrentVolume;
     }
-
-    public void increaseNextRadioStation(int nextCurrentRadioStation) {
-        if (nextCurrentRadioStation < maxRadioStation) {
-            nextCurrentRadioStation++;
+    public  void  increaseVolume() {
+        if (currentVolume < maxVolume) {
+            currentVolume++;
         } else {
-            nextCurrentRadioStation = minRadioStation;
+            this.currentVolume = maxVolume;
         }
-        this.currentRadioStation = nextCurrentRadioStation;
+    }
+    public void decreaseVolume() {
+        int pev = currentVolume - 1;
+        setCurrentVolume(pev);
     }
 
-
-    public void decreasePevRadioStation(int pevCurrentRadioStation) {
+   /* public void decreasePevRadioStation(int pevCurrentRadioStation) {
         if (pevCurrentRadioStation < minRadioStation) {
             currentRadioStation = maxRadioStation;
         }
@@ -71,5 +90,5 @@ public class Radio {
             decreasecurrentVolume = minVolume;
         }
         currentVolume = decreasecurrentVolume;
-    }
+    }*/
 }
